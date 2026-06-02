@@ -1,4 +1,4 @@
-# border-beam-vue3
+# animated-border-beam-vue3
 
 > This project is a Vue 3 port of the original React library [Jakubantalik/border-beam](https://github.com/Jakubantalik/border-beam).
 
@@ -7,7 +7,7 @@ Animated border beam effect for Vue 3. A lightweight component that adds a trave
 ## Install
 
 ```bash
-npm install border-beam-vue3
+npm install animated-border-beam-vue3
 ```
 
 ## Quick start
@@ -22,7 +22,7 @@ npm install border-beam-vue3
 </template>
 
 <script setup lang="ts">
-import { BorderBeam } from 'border-beam-vue3';
+import { BorderBeam } from 'animated-border-beam-vue3';
 </script>
 
 <style>
@@ -147,7 +147,7 @@ All effect layers are absolutely positioned and use `pointer-events: none`, so t
 ## Project structure
 
 ```
-border-beam-vue3/
+animated-border-beam-vue3/
 ├── src/
 │   ├── index.ts          # Public exports
 │   ├── BorderBeam.vue     # Vue component

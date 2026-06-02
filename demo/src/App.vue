@@ -191,7 +191,7 @@
 
 <script setup lang="ts">
 import { computed, defineComponent, h, ref } from 'vue';
-import { BorderBeam, type BorderBeamColorVariant, type BorderBeamSize } from 'border-beam-vue3';
+import { BorderBeam, type BorderBeamColorVariant, type BorderBeamSize } from 'animated-border-beam-vue3';
 
 const CopyIcon = defineComponent({
   name: 'CopyIcon',
@@ -445,8 +445,8 @@ const playgroundStrength = ref(70);
 const durationId = 'duration-input';
 const strengthId = 'strength-input';
 
-const installCmd = 'npm install border-beam-vue3';
-const usageCode = `import { BorderBeam } from 'border-beam-vue3';
+const installCmd = 'npm install animated-border-beam-vue3';
+const usageCode = `import { BorderBeam } from 'animated-border-beam-vue3';
 
 <BorderBeam>
   <YourCard>Content</YourCard>
