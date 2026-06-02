@@ -1,27 +1,37 @@
-# border-beam
+# border-beam-vue3
 
-Animated border beam effect for React. A lightweight component that adds a traveling glow animation around any element — cards, buttons, inputs, or search bars.
+> This project is a Vue 3 port of the original React library [Jakubantalik/border-beam](https://github.com/Jakubantalik/border-beam).
+
+Animated border beam effect for Vue 3. A lightweight component that adds a traveling glow animation around any element -- cards, buttons, inputs, or search bars.
 
 ## Install
 
 ```bash
-npm install border-beam
+npm install border-beam-vue3
 ```
 
 ## Quick start
 
-```tsx
-import { BorderBeam } from 'border-beam';
+```vue
+<template>
+  <BorderBeam>
+    <div class="card">
+      Your content here
+    </div>
+  </BorderBeam>
+</template>
 
-function App() {
-  return (
-    <BorderBeam>
-      <div style={{ padding: 32, borderRadius: 16, background: '#1d1d1d' }}>
-        Your content here
-      </div>
-    </BorderBeam>
-  );
+<script setup lang="ts">
+import { BorderBeam } from 'border-beam-vue3';
+</script>
+
+<style>
+.card {
+  padding: 32px;
+  border-radius: 16px;
+  background: #1d1d1d;
 }
+</style>
 ```
 
 The component wraps your content and overlays the animated beam effect. It auto-detects the `border-radius` of the first child element.
@@ -30,16 +40,19 @@ The component wraps your content and overlays the animated beam effect. It auto-
 
 Three built-in size presets control the glow intensity and animation style:
 
-```tsx
-<BorderBeam size="md">  {/* Full border glow (default) */}
+```vue
+<!-- Full border glow (default) -->
+<BorderBeam size="md">
   <Card />
 </BorderBeam>
 
-<BorderBeam size="sm">  {/* Compact glow for small elements */}
+<!-- Compact glow for small elements -->
+<BorderBeam size="sm">
   <IconButton />
 </BorderBeam>
 
-<BorderBeam size="line">  {/* Bottom-only traveling glow */}
+<!-- Bottom-only traveling glow -->
+<BorderBeam size="line">
   <SearchBar />
 </BorderBeam>
 ```
@@ -48,11 +61,11 @@ Three built-in size presets control the glow intensity and animation style:
 
 Four color palettes are available:
 
-```tsx
-<BorderBeam colorVariant="colorful" />  {/* Rainbow spectrum (default) */}
-<BorderBeam colorVariant="mono" />      {/* Grayscale */}
-<BorderBeam colorVariant="ocean" />     {/* Blue-purple tones */}
-<BorderBeam colorVariant="sunset" />    {/* Orange-yellow-red tones */}
+```vue
+<BorderBeam color-variant="colorful" />
+<BorderBeam color-variant="mono" />
+<BorderBeam color-variant="ocean" />
+<BorderBeam color-variant="sunset" />
 ```
 
 All variants except `mono` animate through a hue-shift cycle.
@@ -61,18 +74,18 @@ All variants except `mono` animate through a hue-shift cycle.
 
 Adapts beam colors for dark or light backgrounds:
 
-```tsx
-<BorderBeam theme="dark" />   {/* Dark background (default) */}
-<BorderBeam theme="light" />  {/* Light background */}
-<BorderBeam theme="auto" />   {/* Detects system preference */}
+```vue
+<BorderBeam theme="dark" />
+<BorderBeam theme="light" />
+<BorderBeam theme="auto" />
 ```
 
 ## Strength
 
 Control the overall intensity of the effect without affecting the wrapped content:
 
-```tsx
-<BorderBeam strength={0.7}>  {/* 70% intensity */}
+```vue
+<BorderBeam :strength="0.7">
   <Card />
 </BorderBeam>
 ```
@@ -83,19 +96,25 @@ Control the overall intensity of the effect without affecting the wrapped conten
 
 Toggle the animation on and off with smooth fade transitions:
 
-```tsx
-const [active, setActive] = useState(true);
+```vue
+<template>
+  <BorderBeam :active="active" @deactivate="() => console.log('faded out')">
+    <Card />
+  </BorderBeam>
+</template>
 
-<BorderBeam active={active} onDeactivate={() => console.log('faded out')}>
-  <Card />
-</BorderBeam>
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const active = ref(true);
+</script>
 ```
 
 ## Props
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `children` | `ReactNode` | — | Content to wrap |
+| default slot | `VNode[]` | — | Content to wrap |
 | `size` | `'sm' \| 'md' \| 'line'` | `'md'` | Size/type preset |
 | `colorVariant` | `'colorful' \| 'mono' \| 'ocean' \| 'sunset'` | `'colorful'` | Color palette |
 | `theme` | `'dark' \| 'light' \| 'auto'` | `'dark'` | Background adaptation |
@@ -107,12 +126,13 @@ const [active, setActive] = useState(true);
 | `saturation` | `number` | `1.2` | Glow saturation multiplier |
 | `hueRange` | `number` | `30` | Hue rotation range in degrees |
 | `staticColors` | `boolean` | `false` | Disable hue-shift animation |
-| `className` | `string` | — | Additional class on the wrapper |
-| `style` | `CSSProperties` | — | Additional inline styles on the wrapper |
-| `onActivate` | `() => void` | — | Called when fade-in completes |
-| `onDeactivate` | `() => void` | — | Called when fade-out completes |
+| `class` | `string \| object \| array` | — | Additional class on the wrapper |
+| `style` | `StyleValue` | — | Additional inline styles on the wrapper |
+| `@activate` | event | — | Emitted when fade-in completes |
+| `@deactivate` | event | — | Emitted when fade-out completes |
+| `@animationend` | `AnimationEvent` | — | Emitted for wrapper animation end events |
 
-All standard `HTMLDivElement` attributes are also forwarded to the wrapper.
+All standard attributes passed to the component are forwarded to the wrapper.
 
 ## How it works
 
@@ -127,13 +147,13 @@ All effect layers are absolutely positioned and use `pointer-events: none`, so t
 ## Project structure
 
 ```
-border-beam/
+border-beam-vue3/
 ├── src/
 │   ├── index.ts          # Public exports
-│   ├── BorderBeam.tsx     # React component
+│   ├── BorderBeam.vue     # Vue component
 │   ├── types.ts           # TypeScript type definitions
 │   └── styles.ts          # CSS generation engine
-├── demo/                  # Vite + React demo site
+├── demo/                  # Vite + Vue demo site
 ├── dist/                  # Built output (ESM + CJS + types)
 ├── package.json
 ├── LICENSE
@@ -142,7 +162,7 @@ border-beam/
 
 ## Requirements
 
-- React 18+
+- Vue 3+
 - Modern browser with CSS `@property` support (Chrome 85+, Safari 15.4+, Firefox 128+)
 
 ## Accessibility
