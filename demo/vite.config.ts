@@ -4,7 +4,7 @@ import { resolve } from 'path';
 
 export default defineConfig({
   plugins: [vue()],
-  base: '/',
+  base: '/border-beam-vue3/',
   resolve: {
     alias: {
       'animated-border-beam-vue3': resolve(__dirname, '../src/index.ts'),
