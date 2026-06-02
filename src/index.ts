@@ -1,5 +1,7 @@
-export { BorderBeam } from './BorderBeam';
-export { default } from './BorderBeam';
+import BorderBeam from './BorderBeam.vue';
+
+export { BorderBeam };
+export default BorderBeam;
 
 export type {
   BorderBeamProps,
