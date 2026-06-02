@@ -12,7 +12,7 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "border-beam-vue3": ["../src/index.ts"]
+      "animated-border-beam-vue3": ["../src/index.ts"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.vue"]

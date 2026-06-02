@@ -7,7 +7,7 @@ export default defineConfig({
   base: '/',
   resolve: {
     alias: {
-      'border-beam-vue3': resolve(__dirname, '../src/index.ts'),
+      'animated-border-beam-vue3': resolve(__dirname, '../src/index.ts'),
     },
   },
 });

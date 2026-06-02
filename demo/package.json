@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "border-beam-vue3": "file:..",
+    "animated-border-beam-vue3": "file:..",
     "vue": "^3.0.0"
   },
   "devDependencies": {
